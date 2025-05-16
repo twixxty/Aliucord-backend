@@ -167,87 +167,133 @@ lenis.on('scroll', (e) => {
     </footer>
        
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+ 
+document.addEventListener('DOMContentLoaded', function() {
 
-           const introOverlay = document.getElementById('intro-overlay');
-            const introLogo = document.getElementById('intro-logo');
-            if (introOverlay && introLogo) {
-                const fadeInScaleDuration = 2000;
-                const fadeOutDuration = 100;
-                const logoAnimationEndTime = fadeInScaleDuration + fadeOutDuration;
-                const overlayFadeOutDelay = logoAnimationEndTime - 300;
-                introOverlay.classList.remove('hidden');
-                introLogo.style.opacity = '0';
-                introLogo.style.animation = `logoFadeInScale ${fadeInScaleDuration / 1000}s ease-in-out forwards`;
-                setTimeout(() => {
-                    introLogo.style.animation = `logoFadeOut ${fadeOutDuration / 1000}s ease-in-out forwards`;
-                }, fadeInScaleDuration);
-                setTimeout(() => {
-                    introOverlay.classList.add('hidden');
+    const introOverlay = document.getElementById('intro-overlay');
+
+    const introLogo = document.getElementById('intro-logo');
+
+    if (introOverlay && introLogo) {
+
+        const fadeInScaleDuration = 2000;
+
+        const fadeOutDuration = 100;
+
+        const logoAnimationEndTime = fadeInScaleDuration + fadeOutDuration;
+
+        const overlayFadeOutDelay = logoAnimationEndTime - 300;
+
+        introOverlay.classList.remove('hidden');
+
+        introLogo.style.opacity = '0';
+
+        introLogo.style.animation = `logoFadeInScale ${fadeInScaleDuration / 1000}s ease-in-out forwards`;
+
+        setTimeout(() => {
+            document.addEventListener('DOMContentLoaded', function() {
+
+                const introOverlay = document.getElementById('intro-overlay');
+                const introLogo = document.getElementById('intro-logo');
+                if (introOverlay && introLogo) {
+                    const fadeInScaleDuration = 2000;
+                    const fadeOutDuration = 100;
+                    const logoAnimationEndTime = fadeInScaleDuration + fadeOutDuration;
+                    const overlayFadeOutDelay = logoAnimationEndTime - 300;
+                    introOverlay.classList.remove('hidden');
+                    introLogo.style.opacity = '0';
+                    introLogo.style.animation = `logoFadeInScale ${fadeInScaleDuration / 1000}s ease-in-out forwards`;
+                    setTimeout(() => {
+                        introLogo.style.animation = `logoFadeOut ${fadeOutDuration / 1000}s ease-in-out forwards`;
+                    }, fadeInScaleDuration);
+                    setTimeout(() => {
+                        introOverlay.classList.add('hidden');
+                        const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
+                        let delay = 50;
+                        const staggerAmount = 150;
+                        elementsToAnimate.forEach(element => {
+                            setTimeout(() => {
+                                element.classList.add('visible');
+                            }, delay);
+                            delay += staggerAmount;
+                        });
+                    }, overlayFadeOutDelay);
+                } else {
+                    console.warn("Intro overlay or logo elements not found. Skipping intro.");
+                    if (introOverlay) {
+                        introOverlay.classList.add('hidden');
+                    }
                     const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
-                    let delay = 50;
+                    let delay = 100;
                     const staggerAmount = 150;
                     elementsToAnimate.forEach(element => {
-                        setTimeout(() => { element.classList.add('visible'); }, delay);
+                        setTimeout(() => {
+                            element.classList.add('visible');
+                        }, delay);
                         delay += staggerAmount;
                     });
-                }, overlayFadeOutDelay);
-            } else {
-                console.warn("Intro overlay or logo elements not found. Skipping intro.");
-                if (introOverlay) { introOverlay.classList.add('hidden'); }
-                const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
-                let delay = 100; const staggerAmount = 150;
-                elementsToAnimate.forEach(element => {
-                    setTimeout(() => { element.classList.add('visible'); }, delay);
-                    delay += staggerAmount;
-                });
-            }
+                }
 
 
-              const questionToggles = document.querySelectorAll(".question-toggle");
-            const faqObservers = new Map();
-            questionToggles.forEach((button) => {
-                const contentId = button.getAttribute("aria-controls");
-                const content = document.getElementById(contentId);
-                if (!content) { console.error(`FAQ content not found for ID: ${contentId}.`); return; }
-                button.addEventListener("click", () => {
-                    const parentQuestion = button.closest('.question');
-                    const isExpanded = button.getAttribute("aria-expanded") === "true";
-                    button.setAttribute("aria-expanded", String(!isExpanded));
-                    button.classList.toggle("open", !isExpanded);
-                    if (parentQuestion) { parentQuestion.classList.toggle("open-state", !isExpanded); }
-                    if (!isExpanded) {
-                        content.style.paddingTop = "1.5rem"; content.style.paddingBottom = "1.5rem";
-                        requestAnimationFrame(() => { content.style.maxHeight = content.scrollHeight + "px"; });
-                        if (!faqObservers.has(content)) {
-                            const observer = new ResizeObserver(() => {
-                                if (button.getAttribute("aria-expanded") === "true") {
-                                    requestAnimationFrame(() => {
-                                        const currentScrollHeight = content.scrollHeight;
-                                        if (content.style.maxHeight !== currentScrollHeight + "px") {
-                                            content.style.maxHeight = currentScrollHeight + "px";
-                                        }
-                                    });
-                                }
-                            });
-                            observer.observe(content); faqObservers.set(content, observer);
-                        } else { faqObservers.get(content).observe(content); }
-                    } else {
-                        content.style.maxHeight = null; content.style.paddingTop = null; content.style.paddingBottom = null;
-                        if (faqObservers.has(content)) { faqObservers.get(content).unobserve(content); }
+                const questionToggles = document.querySelectorAll(".question-toggle");
+                const faqObservers = new Map();
+                questionToggles.forEach((button) => {
+                    const contentId = button.getAttribute("aria-controls");
+                    const content = document.getElementById(contentId);
+                    if (!content) {
+                        console.error(`FAQ content not found for ID: ${contentId}.`);
+                        return;
                     }
+                    button.addEventListener("click", () => {
+                        const parentQuestion = button.closest('.question');
+                        const isExpanded = button.getAttribute("aria-expanded") === "true";
+                        button.setAttribute("aria-expanded", String(!isExpanded));
+                        button.classList.toggle("open", !isExpanded);
+                        if (parentQuestion) {
+                            parentQuestion.classList.toggle("open-state", !isExpanded);
+                        }
+                        if (!isExpanded) {
+                            content.style.paddingTop = "1.5rem";
+                            content.style.paddingBottom = "1.5rem";
+                            requestAnimationFrame(() => {
+                                content.style.maxHeight = content.scrollHeight + "px";
+                            });
+                            if (!faqObservers.has(content)) {
+                                const observer = new ResizeObserver(() => {
+                                    if (button.getAttribute("aria-expanded") === "true") {
+                                        requestAnimationFrame(() => {
+                                            const currentScrollHeight = content.scrollHeight;
+                                            if (content.style.maxHeight !== currentScrollHeight + "px") {
+                                                content.style.maxHeight = currentScrollHeight + "px";
+                                            }
+                                        });
+                                    }
+                                });
+                                observer.observe(content);
+                                faqObservers.set(content, observer);
+                            } else {
+                                faqObservers.get(content).observe(content);
+                            }
+                        } else {
+                            content.style.maxHeight = null;
+                            content.style.paddingTop = null;
+                            content.style.paddingBottom = null;
+                            if (faqObservers.has(content)) {
+                                faqObservers.get(content).unobserve(content);
+                            }
+                        }
+                    });
                 });
-            });
 
 
-            const themeToggleButton = document.getElementById('theme-toggle-button');
-            const themeIconContainer = document.getElementById('theme-icon-container');
-            const themeIconElement = document.getElementById('theme-icon');
+                const themeToggleButton = document.getElementById('theme-toggle-button');
+                const themeIconContainer = document.getElementById('theme-icon-container');
+                const themeIconElement = document.getElementById('theme-icon');
 
-            if (themeToggleButton && themeIconContainer && themeIconElement) {
-                const themeCycle = ['light', 'dark', 'auto'];
-                const themeIconMarkup = {
-                    light: `
+                if (themeToggleButton && themeIconContainer && themeIconElement) {
+                    const themeCycle = ['light', 'dark', 'auto'];
+                    const themeIconMarkup = {
+                        light: `
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <circle cx="12" cy="12" r="4"></circle>
                           <path d="M12 2v2"></path><path d="M12 20v2"></path>
@@ -255,71 +301,71 @@ lenis.on('scroll', (e) => {
                           <path d="M2 12h2"></path><path d="M20 12h2"></path>
                           <path d="m4.93 19.07 1.41-1.41"></path><path d="m17.66 6.34 1.41-1.41"></path>
                         </svg>`,
-                    dark: `
+                        dark: `
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                         </svg>`,
-                    auto: `
+                        auto: `
                         <span class="material-symbols-outlined">
                           routine
                         </span>`
-                };
-                const themeActionTitles = {
-                    light: 'Switch to Dark Mode',
-                    dark: 'Switch to Auto Mode',
-                    auto: 'Switch to Light Mode'
-                };
-                const animationDuration = 600;
+                    };
+                    const themeActionTitles = {
+                        light: 'Switch to Dark Mode',
+                        dark: 'Switch to Auto Mode',
+                        auto: 'Switch to Light Mode'
+                    };
+                    const animationDuration = 600;
 
-                const getStoredUserPreference = () => localStorage.getItem('theme-preference');
-                const setStoredUserPreference = (preference) => localStorage.setItem('theme-preference', preference);
-                const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                    const getStoredUserPreference = () => localStorage.getItem('theme-preference');
+                    const setStoredUserPreference = (preference) => localStorage.setItem('theme-preference', preference);
+                    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-                const applyActualTheme = (preference) => {
-                    let themeToSet = (preference === 'auto') ? getSystemTheme() : preference;
-                    document.documentElement.setAttribute('data-theme', themeToSet);
-                };
+                    const applyActualTheme = (preference) => {
+                        let themeToSet = (preference === 'auto') ? getSystemTheme() : preference;
+                        document.documentElement.setAttribute('data-theme', themeToSet);
+                    };
 
-                function updateThemeButtonVisuals(currentPreferenceValue) {
-                    themeIconElement.innerHTML = themeIconMarkup[currentPreferenceValue]; // Inject HTML markup
-                    themeToggleButton.title = themeActionTitles[currentPreferenceValue];
-                }
-
-                let currentUserPreference = getStoredUserPreference() || 'auto';
-                applyActualTheme(currentUserPreference);
-                updateThemeButtonVisuals(currentUserPreference);
-
-                themeToggleButton.addEventListener('click', () => {
-                    if (themeIconContainer.classList.contains('icon-rotating')) return;
-                    themeIconContainer.classList.add('icon-rotating');
-
-                    let currentPreferenceIndex = themeCycle.indexOf(currentUserPreference);
-                    let nextPreferenceIndex = (currentPreferenceIndex + 1) % themeCycle.length;
-                    currentUserPreference = themeCycle[nextPreferenceIndex];
-
-                    setStoredUserPreference(currentUserPreference);
-                    applyActualTheme(currentUserPreference);
-
-                    setTimeout(() => {
-                        updateThemeButtonVisuals(currentUserPreference);
-                    }, animationDuration / 2);
-
-                    setTimeout(() => {
-                        themeIconContainer.classList.remove('icon-rotating');
-                    }, animationDuration);
-                });
-
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-                    if (currentUserPreference === 'auto') {
-                        applyActualTheme('auto');
+                    function updateThemeButtonVisuals(currentPreferenceValue) {
+                        themeIconElement.innerHTML = themeIconMarkup[currentPreferenceValue]; // Inject HTML markup
+                        themeToggleButton.title = themeActionTitles[currentPreferenceValue];
                     }
-                });
 
-            } else {
-                console.error("Theme toggle button elements not found.");
-            }
-        });
-         const funFactElement = document.getElementById('fun-fact-text');
+                    let currentUserPreference = getStoredUserPreference() || 'auto';
+                    applyActualTheme(currentUserPreference);
+                    updateThemeButtonVisuals(currentUserPreference);
+
+                    themeToggleButton.addEventListener('click', () => {
+                        if (themeIconContainer.classList.contains('icon-rotating')) return;
+                        themeIconContainer.classList.add('icon-rotating');
+
+                        let currentPreferenceIndex = themeCycle.indexOf(currentUserPreference);
+                        let nextPreferenceIndex = (currentPreferenceIndex + 1) % themeCycle.length;
+                        currentUserPreference = themeCycle[nextPreferenceIndex];
+
+                        setStoredUserPreference(currentUserPreference);
+                        applyActualTheme(currentUserPreference);
+
+                        setTimeout(() => {
+                            updateThemeButtonVisuals(currentUserPreference);
+                        }, animationDuration / 2);
+
+                        setTimeout(() => {
+                            themeIconContainer.classList.remove('icon-rotating');
+                        }, animationDuration);
+                    });
+
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                        if (currentUserPreference === 'auto') {
+                            applyActualTheme('auto');
+                        }
+                    });
+
+                } else {
+                    console.error("Theme toggle button elements not found.");
+                }
+            });
+            const funFactElement = document.getElementById('fun-fact-text');
             if (funFactElement) {
                 const funFacts = [
                     "Did you know that Google Play Protect is useless?",
@@ -336,12 +382,12 @@ lenis.on('scroll', (e) => {
                     "veeeee 😭"
                 ];
                 const funFactPrefix = "";
-                let currentFactIndex = -1; 
-                const displayDuration = 7000; 
-                const transitionDuration = 400; 
+                let currentFactIndex = -1;
+                const displayDuration = 7000;
+                const transitionDuration = 400;
 
                 function displayNextFunFact() {
-                    funFactElement.classList.add('changing'); 
+                    funFactElement.classList.add('changing');
 
                     setTimeout(() => {
                         currentFactIndex = (currentFactIndex + 1) % funFacts.length;
@@ -353,10 +399,10 @@ lenis.on('scroll', (e) => {
                             factText.toLowerCase().startsWith("aliucord can run")) {
                             funFactElement.textContent = funFactPrefix + factText;
                         } else {
-                            funFactElement.textContent = factText; 
+                            funFactElement.textContent = factText;
                         }
                         funFactElement.classList.remove('changing');
-                    }, transitionDuration); 
+                    }, transitionDuration);
 
                     setTimeout(displayNextFunFact, displayDuration + transitionDuration); // Schedule next change
                 }
@@ -367,8 +413,361 @@ lenis.on('scroll', (e) => {
             } else {
                 console.warn("Fun fact element not found.");
             }
+            introLogo.style.animation = `logoFadeOut ${fadeOutDuration / 1000}s ease-in-out forwards`;
 
-        
+        }, fadeInScaleDuration);
+
+        setTimeout(() => {
+
+            introOverlay.classList.add('hidden');
+
+            const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
+
+            let delay = 50;
+
+            const staggerAmount = 150;
+
+            elementsToAnimate.forEach(element => {
+
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, delay);
+
+                delay += staggerAmount;
+
+            });
+
+        }, overlayFadeOutDelay);
+
+    } else {
+
+        console.warn("Intro overlay or logo elements not found. Skipping intro.");
+
+        if (introOverlay) {
+            introOverlay.classList.add('hidden');
+        }
+
+        const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
+
+        let delay = 100;
+        const staggerAmount = 150;
+
+        elementsToAnimate.forEach(element => {
+
+            setTimeout(() => {
+                element.classList.add('visible');
+            }, delay);
+
+            delay += staggerAmount;
+
+        });
+
+    }
+
+    const questionToggles = document.querySelectorAll(".question-toggle");
+
+    const faqObservers = new Map();
+
+    questionToggles.forEach((button) => {
+
+        const contentId = button.getAttribute("aria-controls");
+
+        const content = document.getElementById(contentId);
+
+        if (!content) {
+            console.error(`FAQ content not found for ID: ${contentId}.`);
+            return;
+        }
+
+        button.addEventListener("click", () => {
+
+            const parentQuestion = button.closest('.question');
+
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+            button.setAttribute("aria-expanded", String(!isExpanded));
+
+            button.classList.toggle("open", !isExpanded);
+
+            if (parentQuestion) {
+                parentQuestion.classList.toggle("open-state", !isExpanded);
+            }
+
+            if (!isExpanded) {
+
+                content.style.paddingTop = "1.5rem";
+                content.style.paddingBottom = "1.5rem";
+
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                });
+
+                if (!faqObservers.has(content)) {
+
+                    const observer = new ResizeObserver(() => {
+
+                        if (button.getAttribute("aria-expanded") === "true") {
+
+                            requestAnimationFrame(() => {
+
+                                const currentScrollHeight = content.scrollHeight;
+
+                                if (content.style.maxHeight !== currentScrollHeight + "px") {
+
+                                    content.style.maxHeight = currentScrollHeight + "px";
+
+                                }
+
+                            });
+
+                        }
+
+                    });
+
+                    observer.observe(content);
+                    faqObservers.set(content, observer);
+
+                } else {
+                    faqObservers.get(content).observe(content);
+                }
+
+            } else {
+
+                content.style.maxHeight = null;
+                content.style.paddingTop = null;
+                content.style.paddingBottom = null;
+
+                if (faqObservers.has(content)) {
+                    faqObservers.get(content).unobserve(content);
+                }
+
+            }
+
+        });
+
+    });
+
+    const themeToggleButton = document.getElementById('theme-toggle-button');
+
+    const themeIconContainer = document.getElementById('theme-icon-container');
+
+    const themeIconElement = document.getElementById('theme-icon');
+
+    if (themeToggleButton && themeIconContainer && themeIconElement) {
+
+        const themeCycle = ['light', 'dark', 'auto'];
+
+        const themeIconMarkup = {
+
+            light: `
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                          <circle cx="12" cy="12" r="4"></circle>
+
+                          <path d="M12 2v2"></path><path d="M12 20v2"></path>
+
+                          <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+
+                          <path d="M2 12h2"></path><path d="M20 12h2"></path>
+
+                          <path d="m4.93 19.07 1.41-1.41"></path><path d="m17.66 6.34 1.41-1.41"></path>
+
+                        </svg>`,
+
+            dark: `
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+
+                        </svg>`,
+
+            auto: `
+
+                        <span class="material-symbols-outlined">
+
+                          routine
+
+                        </span>`
+
+        };
+
+        const themeActionTitles = {
+
+            light: 'Switch to Dark Mode',
+
+            dark: 'Switch to Auto Mode',
+
+            auto: 'Switch to Light Mode'
+
+        };
+
+        const animationDuration = 600;
+
+        const getStoredUserPreference = () => localStorage.getItem('theme-preference');
+
+        const setStoredUserPreference = (preference) => localStorage.setItem('theme-preference', preference);
+
+        const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+        const applyActualTheme = (preference) => {
+
+            let themeToSet = (preference === 'auto') ? getSystemTheme() : preference;
+
+            document.documentElement.setAttribute('data-theme', themeToSet);
+
+        };
+
+        function updateThemeButtonVisuals(currentPreferenceValue) {
+
+            themeIconElement.innerHTML = themeIconMarkup[currentPreferenceValue]; // Inject HTML markup
+
+            themeToggleButton.title = themeActionTitles[currentPreferenceValue];
+
+        }
+
+        let currentUserPreference = getStoredUserPreference() || 'auto';
+
+        applyActualTheme(currentUserPreference);
+
+        updateThemeButtonVisuals(currentUserPreference);
+
+        themeToggleButton.addEventListener('click', () => {
+
+            if (themeIconContainer.classList.contains('icon-rotating')) return;
+
+            themeIconContainer.classList.add('icon-rotating');
+
+            let currentPreferenceIndex = themeCycle.indexOf(currentUserPreference);
+
+            let nextPreferenceIndex = (currentPreferenceIndex + 1) % themeCycle.length;
+
+            currentUserPreference = themeCycle[nextPreferenceIndex];
+
+            setStoredUserPreference(currentUserPreference);
+
+            applyActualTheme(currentUserPreference);
+
+            setTimeout(() => {
+
+                updateThemeButtonVisuals(currentUserPreference);
+
+            }, animationDuration / 2);
+
+            setTimeout(() => {
+
+                themeIconContainer.classList.remove('icon-rotating');
+
+            }, animationDuration);
+
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+
+            if (currentUserPreference === 'auto') {
+
+                applyActualTheme('auto');
+
+            }
+
+        });
+
+    } else {
+
+        console.error("Theme toggle button elements not found.");
+
+    }
+
+});
+
+const funFactElement = document.getElementById('fun-fact-text');
+
+if (funFactElement) {
+
+    const funFacts = [
+
+        "Did you know that Google Play Protect is useless?",
+
+        "Did you know Aliucord with 150+ plugins somehow runs better than Discord's new app?",
+
+        "Did you know Aliucord has over 200 available plugins?",
+
+        "i am in your walls",
+
+        "Did you know AliucordRN spawned Enmity and Vendetta?",
+
+        "Having issues? Visit the #support channel in our Discord!",
+
+        "The IWillCrashYourDiscord plugin crashes your discord.",
+
+        "\"@Vendicated my bad.\"",
+
+        "Aliucord can run on WearOS",
+
+        "Aliucord uses the *real* old UI, from mid-2022!",
+
+        "There was an attempt to make Aliucord run on iOS…",
+
+        "veeeee 😭"
+
+    ];
+
+    const funFactPrefix = "";
+
+    let currentFactIndex = -1;
+
+    const displayDuration = 7000;
+
+    const transitionDuration = 400;
+
+    function displayNextFunFact() {
+
+        funFactElement.classList.add('changing');
+
+        setTimeout(() => {
+
+            currentFactIndex = (currentFactIndex + 1) % funFacts.length;
+
+            const factText = funFacts[currentFactIndex];
+
+            if (factText.toLowerCase().startsWith("did you know") ||
+
+                factText.toLowerCase().startsWith("having issues") ||
+
+                factText.toLowerCase().startsWith("aliucord uses") ||
+
+                factText.toLowerCase().startsWith("there was an attempt") ||
+
+                factText.toLowerCase().startsWith("aliucord can run")) {
+
+                funFactElement.textContent = funFactPrefix + factText;
+
+            } else {
+
+                funFactElement.textContent = factText;
+
+            }
+
+            funFactElement.classList.remove('changing');
+
+        }, transitionDuration);
+
+        setTimeout(displayNextFunFact, displayDuration + transitionDuration); // Schedule next change
+
+    }
+
+    if (funFacts.length > 0) {
+
+        displayNextFunFact();
+
+    }
+
+} else {
+
+    console.warn("Fun fact element not found.");
+
+} 
     </script>
 </body>
 </html>
