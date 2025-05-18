@@ -1,395 +1,398 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light"> 
+<html lang="en" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aliucord Website</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=routine" />
-    <link rel="icon" href="aliucord.svg" type="image/x-icon"> 
-<script src="https://unpkg.com/lenis@1.3.3/dist/lenis.min.js"></script> 
-<style>
-.material-symbols-outlined {
-    
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24;
-}
-</style>
-
-    <script>
-const lenis = new Lenis({
-  autoRaf: true,
-});
-
-lenis.on('scroll', (e) => {
-  console.log(e);
-});
-        (function() {
-            const getStoredUserPreference = () => localStorage.getItem('theme-preference');
-            const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-            let preference = getStoredUserPreference(); 
-            let themeToSet;
-
-            if (preference === 'auto' || !preference) { 
-                themeToSet = getSystemTheme();
-            } else { 
-                themeToSet = preference; 
-            }
-            document.documentElement.setAttribute('data-theme', themeToSet);
-        })();
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aliucord Website</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=routine" />
+  <link rel="icon" href="aliucord.svg" type="image/x-icon">
+  <script src="https://unpkg.com/lenis@1.3.3/dist/lenis.min.js"></script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script>
+    const lenis = new Lenis({
+      autoRaf: true,
+    });
+    (function() {
+      const getStoredUserPreference = () => localStorage.getItem('theme-preference');
+      const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      let preference = getStoredUserPreference();
+      let themeToSet = (preference === 'auto' || !preference) ? getSystemTheme() : preference;
+      document.documentElement.setAttribute('data-theme', themeToSet);
+    })();
+  </script>
 </head>
 
-
 <body>
-    <div id="intro-overlay">
-        <img src="aliucord.svg" alt="Aliucord Logo Animation" id="intro-logo">
-    </div>
+  <div id="intro-overlay">
+    <img src="aliucord.svg" alt="Aliucord Logo Animation" id="intro-logo">
+  </div>
 
-    <div class="main-wrapper">
+  <div id="sticky-top-navigation-bar">
+    <span id="sticky-nav-title" class="site-title-sticky-nav">Aliucord</span>
+    <a href="https://github.com/Aliucord/Aliucord#-installation" target="_blank" id="sticky-nav-get-started-button" class="button-cta button-cta-sticky-nav">Get Started</a>
+    <div class="theme-switcher">
+      <button type="button" id="theme-toggle-button" title="Change Theme">
+        <span id="theme-icon-container"><span id="theme-icon"></span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="container">
+      <header class="header fade-slide-in">
+        <img src="aliucord.svg" alt="Aliucord logo" width="120" height="120" class="site-logo" id="original-header-logo">
+        <h1 id="original-header-title">Aliucord</h1>
+        <p>A customizable Discord client for Android</p>
+      </header>
+
+      <section class="content fade-slide-in">
+        <p>Aliucord is a customizable Discord client that offers a wide range of features and functionality beyond
+          what's available in the standard Discord client. With Aliucord, users can customize their Discord
+          experience to suit their needs and preferences, from changing the look and feel of the app to adding new
+          features and integrations.</p>
+        <div class="buttons fade-slide-in">
+          <a href="https://aliucord.com/links/github" target="_blank" class="button-cta">Our Github</a>
+          <a href="https://github.com/Aliucord/Aliucord#-installation" target="_blank" class="button-cta" id="original-get-started-button">Get Started</a>
+          <a href="https://aliucord.com/links/discord" target="_blank" class="button-cta">Join Discord</a>
+        </div>
+      </section>
+
+      <section class="faq-section fade-slide-in" id="faq">
         <div class="container">
-            <header class="header fade-slide-in">
-                <img src="aliucord.svg" alt="Aliucord logo" width="120" height="120" class="site-logo">
-                <h1>Aliucord</h1>
-                <p>A customizable Discord client for Android</p>
-                  
-            </header>
-
-          <section class="content fade-slide-in">
-                <p>Aliucord is a customizable Discord client that offers a wide range of features and functionality beyond
-                    what's available in the standard Discord client. With Aliucord, users can customize their Discord
-                    experience to suit their needs and preferences, from changing the look and feel of the app to adding new
-                    features and integrations.</p>
-                <div class="buttons fade-slide-in">
-                    <a href="https://aliucord.com/links/github" target="_blank" class="button-cta">Our Github</a>
-                    <a href="https://github.com/Aliucord/Aliucord#-installation" target="_blank" class="button-cta">Get Started</a>
-                    <a href="https://aliucord.com/links/discord" target="_blank" class="button-cta">Join Discord</a>
-                </div>
-              
-
-        </div>
-
-            
-        </section>
-
-        <section class="faq-section fade-slide-in" id="faq">
-            
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="question">
-                    <button class="question-toggle" aria-expanded="false" aria-controls="faq1-content">
-                        <span class="question-text">Is tracking & telemetry disabled / is there a no track plugin?</span>
-                        <span class="plus">+</span>
-                        <span class="minus">+</span>
-                    </button>
-                    <div class="question-content" id="faq1-content">
-                        <p>Yes, NoTrack is part of the CorePlugins. Crashlytics, Adjust, Discord analytics and Spotify analytics are
-                            all disabled.</p>
-                    </div>
-                </div>
-                <div class="question">
-                    <button class="question-toggle" aria-expanded="false" aria-controls="faq2-content">
-                        <span class="question-text">Will I get banned for using Aliucord? Will plugin X get me banned?</span>
-                        <span class="plus">+</span>
-                        <span class="minus">+</span>
-                    </button>
-                    <div class="question-content" id="faq2-content">
-                        <p>Client modifications are against Discord's Terms of Service. However, Discord is pretty indifferent about
-                            them and there are no known cases of users getting banned for using client mods. So you should generally
-                            be fine as long as you don't use plugins that bypass API restrictions or implement spammy / selfbot
-                            behaviour (mass deleting, spam plugins, etc).</p>
-                        <p>Regardless, if your account is very important to you and it getting disabled would be a disaster for you,
-                            you should probably not use client mods.</p>
-                        <p>Additionally, make sure not to post screenshots with Aliucord in a server where you might get banned or
-                            reported for it.</p>
-                    </div>
-                </div>
-                 <div class="question">
-                    <button class="question-toggle" aria-expanded="false" aria-controls="faq3-content">
-                        <span class="question-text">Where can I find plugins?</span>
-                        <span class="plus">+</span>
-                        <span class="minus">+</span>
-                    </button>
-                    <div class="question-content" id="faq3-content">
-                        <p>You can find lots of plugins on our <a href="/links/discord" target="_blank">Discord server - #plugins-list channel</a>.</p>
-                    </div>
-                </div>
-                <div class="question">
-                    <button class="question-toggle" aria-expanded="false" aria-controls="faq4-content">
-                        <span class="question-text">Google Play Protect says Aliucord is potentially harmful</span>
-                        <span class="plus">+</span>
-                        <span class="minus">+</span>
-                    </button>
-                    <div class="question-content" id="faq4-content">
-                        <p>Every Android app is signed with a signature by its developer. This way Android can confirm an apk comes
-                            from a credible source and wasn't tampered with. Because Aliucord is built locally on your device, that
-                            also means it is signed locally on your device, with a signature created just for you. This means that
-                            the signature of your Aliucord app is unique and Google doesn't recognise it. Thus, you can safely ignore the warning.</p>
-                    </div>
-                </div>
+          <h2>Frequently Asked Questions</h2>
+          <div class="question">
+            <button class="question-toggle" aria-expanded="false" aria-controls="faq1-content">
+              <span class="question-text">Is tracking & telemetry disabled / is there a no track plugin?</span>
+              <span class="plus">+</span> <span class="minus">+</span>
+            </button>
+            <div class="question-content" id="faq1-content">
+              <p>Yes, NoTrack is part of the CorePlugins. Crashlytics, Adjust, Discord analytics and Spotify analytics are all disabled.</p>
             </div>
-        </section>
+          </div>
+          <div class="question">
+            <button class="question-toggle" aria-expanded="false" aria-controls="faq2-content">
+              <span class="question-text">Will I get banned for using Aliucord? Will plugin X get me banned?</span>
+              <span class="plus">+</span> <span class="minus">+</span>
+            </button>
+            <div class="question-content" id="faq2-content">
+              <p>Client modifications are against Discord's Terms of Service. However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods. So you should generally be fine as long as you don't use plugins that bypass API restrictions or implement spammy / selfbot behaviour (mass deleting, spam plugins, etc).</p>
+              <p>Regardless, if your account is very important to you and it getting disabled would be a disaster for you, you should probably not use client mods.</p>
+              <p>Additionally, make sure not to post screenshots with Aliucord in a server where you might get banned or reported for it.</p>
+            </div>
+          </div>
+          <div class="question">
+            <button class="question-toggle" aria-expanded="false" aria-controls="faq3-content">
+              <span class="question-text">Where can I find plugins?</span>
+              <span class="plus">+</span> <span class="minus">+</span>
+            </button>
+            <div class="question-content" id="faq3-content">
+              <p>You can find lots of plugins on our <a href="/links/discord" target="_blank">Discord server - #plugins-list channel</a>.</p>
+            </div>
+          </div>
+          <div class="question">
+            <button class="question-toggle" aria-expanded="false" aria-controls="faq4-content">
+              <span class="question-text">Google Play Protect says Aliucord is potentially harmful</span>
+              <span class="plus">+</span> <span class="minus">+</span>
+            </button>
+            <div class="question-content" id="faq4-content">
+              <p>Every Android app is signed with a signature by its developer. This way Android can confirm an apk comes from a credible source and wasn't tampered with. Because Aliucord is built locally on your device, that also means it is signed locally on your device, with a signature created just for you. This means that the signature of your Aliucord app is unique and Google doesn't recognise it. Thus, you can safely ignore the warning.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
-      <footer class="site-footer fade-slide-in">
-        
-        <div class="theme-switcher">
-            <button type="button" id="theme-toggle-button" title="Change Theme">
-                <span id="theme-icon-container">
-                    <span id="theme-icon"></span>
-                </span>
-            </button>
+    <footer class="site-footer fade-slide-in">
+      <p>Revamped by <a href="https://twixxt.vercel.app" target="_blank">twixxty</a> on Discord</p>
+      <p id="site-old">Classic Website made by <a href="https://mercenarylabs.net/breado" target="_blank">Breado#5112</a> on Discord</p>
+      <span>Aliucord is not affiliated or endorsed by Discord. Discord is a trademark of Discord Inc.</span>
+      <section class="fun-fact-section fade-slide-in">
+        <div class="container">
+          <div id="fun-fact-container">
+            <p id="fun-fact-text"></p>
+          </div>
         </div>
-        
-                <p>
-            Revamped by <a href="https://twixxt.vercel.app" target="_blank">twixxty</a> on Discord
-        </p>
-        <p id="site-old">
-            Classic Website made by <a href="https://mercenarylabs.net/breado" target="_blank">Breado#5112</a> on Discord
-        </p>
-        
-        <span>Aliucord is not affiliated or endorsed by Discord. Discord is a trademark of Discord Inc.</span>
-          <section class="fun-fact-section fade-slide-in">
-
-            <div class="container">
-
-                <div id="fun-fact-container">
-                    <p id="fun-fact-text"></p>
-                </div>
-
-            </div>
-            </section>
+      </section>
     </footer>
-       
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const stickyNavTitleElement = document.getElementById('sticky-nav-title');
 
- 	const introOverlay = document.getElementById('intro-overlay');
- 	const introLogo = document.getElementById('intro-logo');
- 	if (introOverlay && introLogo) {
- 		const fadeInScaleDuration = 2000;
- 		const fadeOutDuration = 100;
- 		const logoAnimationEndTime = fadeInScaleDuration + fadeOutDuration;
- 		const overlayFadeOutDelay = logoAnimationEndTime - 300;
- 		introOverlay.classList.remove('hidden');
- 		introLogo.style.opacity = '0';
- 		introLogo.style.animation = `logoFadeInScale ${fadeInScaleDuration / 1000}s ease-in-out forwards`;
- 		setTimeout(() => {
- 			introLogo.style.animation = `logoFadeOut ${fadeOutDuration / 1000}s ease-in-out forwards`;
- 		}, fadeInScaleDuration);
- 		setTimeout(() => {
- 			introOverlay.classList.add('hidden');
- 			const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
- 			let delay = 50;
- 			const staggerAmount = 150;
- 			elementsToAnimate.forEach(element => {
- 				setTimeout(() => {
- 					element.classList.add('visible');
- 				}, delay);
- 				delay += staggerAmount;
- 			});
- 		}, overlayFadeOutDelay);
- 	} else {
- 		console.warn("Intro overlay or logo elements not found. Skipping intro.");
- 		if (introOverlay) {
- 			introOverlay.classList.add('hidden');
- 		}
- 		const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
- 		let delay = 100;
- 		const staggerAmount = 150;
- 		elementsToAnimate.forEach(element => {
- 			setTimeout(() => {
- 				element.classList.add('visible');
- 			}, delay);
- 			delay += staggerAmount;
- 		});
- 	}
+        if (stickyNavTitleElement) {
+          stickyNavTitleElement.addEventListener('click', function(event) {
+            event.preventDefault();
 
+            if (typeof Lenis !== 'undefined' && window.lenis instanceof Lenis) {
+              window.lenis.scrollTo(0, {
+                duration: 1.5,
+                easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+              });
+            } else {
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+            }
+          });
+        } else {
+          console.warn("Sticky navigation title element ('sticky-nav-title') not found for scroll-to-top functionality.");
+        }
+      });
 
- 	const questionToggles = document.querySelectorAll(".question-toggle");
- 	const faqObservers = new Map();
- 	questionToggles.forEach((button) => {
- 		const contentId = button.getAttribute("aria-controls");
- 		const content = document.getElementById(contentId);
- 		if (!content) {
- 			console.error(`FAQ content not found for ID: ${contentId}.`);
- 			return;
- 		}
- 		button.addEventListener("click", () => {
- 			const parentQuestion = button.closest('.question');
- 			const isExpanded = button.getAttribute("aria-expanded") === "true";
- 			button.setAttribute("aria-expanded", String(!isExpanded));
- 			button.classList.toggle("open", !isExpanded);
- 			if (parentQuestion) {
- 				parentQuestion.classList.toggle("open-state", !isExpanded);
- 			}
- 			if (!isExpanded) {
- 				content.style.paddingTop = "1.5rem";
- 				content.style.paddingBottom = "1.5rem";
- 				requestAnimationFrame(() => {
- 					content.style.maxHeight = content.scrollHeight + "px";
- 				});
- 				if (!faqObservers.has(content)) {
- 					const observer = new ResizeObserver(() => {
- 						if (button.getAttribute("aria-expanded") === "true") {
- 							requestAnimationFrame(() => {
- 								const currentScrollHeight = content.scrollHeight;
- 								if (content.style.maxHeight !== currentScrollHeight + "px") {
- 									content.style.maxHeight = currentScrollHeight + "px";
- 								}
- 							});
- 						}
- 					});
- 					observer.observe(content);
- 					faqObservers.set(content, observer);
- 				} else {
- 					faqObservers.get(content).observe(content);
- 				}
- 			} else {
- 				content.style.maxHeight = null;
- 				content.style.paddingTop = null;
- 				content.style.paddingBottom = null;
- 				if (faqObservers.has(content)) {
- 					faqObservers.get(content).unobserve(content);
- 				}
- 			}
- 		});
- 	});
+      document.addEventListener('DOMContentLoaded', function() {
+        const introOverlay = document.getElementById('intro-overlay');
+        const introLogoEl = document.getElementById('intro-logo');
+        if (introOverlay && introLogoEl) {
+          const fadeInScaleDuration = 2000;
+          const fadeOutDuration = 100;
+          const logoAnimationEndTime = fadeInScaleDuration + fadeOutDuration;
+          const overlayFadeOutDelay = logoAnimationEndTime - 300;
+          introOverlay.classList.remove('hidden');
+          introLogoEl.style.opacity = '0';
+          introLogoEl.style.animation = `logoFadeInScale ${fadeInScaleDuration / 1000}s ease-in-out forwards`;
+          setTimeout(() => {
+            introLogoEl.style.animation = `logoFadeOut ${fadeOutDuration / 1000}s ease-in-out forwards`;
+          }, fadeInScaleDuration);
+          setTimeout(() => {
+            introOverlay.classList.add('hidden');
+            const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
+            let delay = 50;
+            const staggerAmount = 150;
+            elementsToAnimate.forEach(element => {
+              setTimeout(() => {
+                element.classList.add('visible');
+              }, delay);
+              delay += staggerAmount;
+            });
+          }, overlayFadeOutDelay);
+        } else {
+          console.warn("Intro overlay or logo elements not found. Skipping intro.");
+          if (introOverlay) introOverlay.classList.add('hidden');
+          const elementsToAnimate = document.querySelectorAll('.fade-slide-in');
+          let delay = 100;
+          const staggerAmount = 150;
+          elementsToAnimate.forEach(element => {
+            setTimeout(() => {
+              element.classList.add('visible');
+            }, delay);
+            delay += staggerAmount;
+          });
+        }
 
+        const questionToggles = document.querySelectorAll(".question-toggle");
+        const faqObservers = new Map();
+        questionToggles.forEach((button) => {
+          const contentId = button.getAttribute("aria-controls");
+          const content = document.getElementById(contentId);
+          if (!content) {
+            console.error(`FAQ content not found for ID: ${contentId}.`);
+            return;
+          }
+          button.addEventListener("click", () => {
+            const parentQuestion = button.closest('.question');
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            button.setAttribute("aria-expanded", String(!isExpanded));
+            button.classList.toggle("open", !isExpanded);
+            if (parentQuestion) parentQuestion.classList.toggle("open-state", !isExpanded);
+            if (!isExpanded) {
+              content.style.paddingTop = "1.5rem";
+              content.style.paddingBottom = "1.5rem";
+              requestAnimationFrame(() => {
+                content.style.maxHeight = content.scrollHeight + "px";
+              });
+              if (!faqObservers.has(content)) {
+                const observer = new ResizeObserver(() => {
+                  if (button.getAttribute("aria-expanded") === "true") {
+                    requestAnimationFrame(() => {
+                      const currentScrollHeight = content.scrollHeight;
+                      if (content.style.maxHeight !== currentScrollHeight + "px") content.style.maxHeight = currentScrollHeight + "px";
+                    });
+                  }
+                });
+                observer.observe(content);
+                faqObservers.set(content, observer);
+              } else {
+                faqObservers.get(content).observe(content);
+              }
+            } else {
+              content.style.maxHeight = null;
+              content.style.paddingTop = null;
+              content.style.paddingBottom = null;
+              if (faqObservers.has(content)) faqObservers.get(content).unobserve(content);
+            }
+          });
+        });
 
- 	const themeToggleButton = document.getElementById('theme-toggle-button');
- 	const themeIconContainer = document.getElementById('theme-icon-container');
- 	const themeIconElement = document.getElementById('theme-icon');
+        const themeToggleButton = document.getElementById('theme-toggle-button');
+        const themeIconContainer = document.getElementById('theme-icon-container');
+        const themeIconElement = document.getElementById('theme-icon');
+        if (themeToggleButton && themeIconContainer && themeIconElement) {
+          const themeCycle = ['light', 'dark', 'auto'];
+          const themeIconMarkup = {
+            light: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m4.93 19.07 1.41-1.41"></path><path d="m17.66 6.34 1.41-1.41"></path></svg>`,
+            dark: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>`,
+            auto: `<span class="material-symbols-outlined">routine</span>`
+          };
+          const themeActionTitles = {
+            light: 'Switch to Dark Mode',
+            dark: 'Switch to Auto Mode',
+            auto: 'Switch to Light Mode'
+          };
+          const animationDuration = 600;
+          const getStoredUserPreference = () => localStorage.getItem('theme-preference');
+          const setStoredUserPreference = (preference) => localStorage.setItem('theme-preference', preference);
+          const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          const applyActualTheme = (preference) => {
+            let themeToSet = (preference === 'auto') ? getSystemTheme() : preference;
+            document.documentElement.setAttribute('data-theme', themeToSet);
+          };
 
- 	if (themeToggleButton && themeIconContainer && themeIconElement) {
- 		const themeCycle = ['light', 'dark', 'auto'];
- 		const themeIconMarkup = {
- 			light: `
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <circle cx="12" cy="12" r="4"></circle>
-                          <path d="M12 2v2"></path><path d="M12 20v2"></path>
-                          <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
-                          <path d="M2 12h2"></path><path d="M20 12h2"></path>
-                          <path d="m4.93 19.07 1.41-1.41"></path><path d="m17.66 6.34 1.41-1.41"></path>
-                        </svg>`,
- 			dark: `
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                        </svg>`,
- 			auto: `
-                        <span class="material-symbols-outlined">
-                          routine
-                        </span>`
- 		};
- 		const themeActionTitles = {
- 			light: 'Switch to Dark Mode',
- 			dark: 'Switch to Auto Mode',
- 			auto: 'Switch to Light Mode'
- 		};
- 		const animationDuration = 600;
+          function updateThemeButtonVisuals(currentPreferenceValue) {
+            themeIconElement.innerHTML = themeIconMarkup[currentPreferenceValue];
+            themeToggleButton.title = themeActionTitles[currentPreferenceValue];
+          }
+          let currentUserPreference = getStoredUserPreference() || 'auto';
+          applyActualTheme(currentUserPreference);
+          updateThemeButtonVisuals(currentUserPreference);
+          themeToggleButton.addEventListener('click', () => {
+            if (themeIconContainer.classList.contains('icon-rotating')) return;
+            themeIconContainer.classList.add('icon-rotating');
+            let currentPreferenceIndex = themeCycle.indexOf(currentUserPreference);
+            currentUserPreference = themeCycle[(currentPreferenceIndex + 1) % themeCycle.length];
+            setStoredUserPreference(currentUserPreference);
+            applyActualTheme(currentUserPreference);
+            setTimeout(() => updateThemeButtonVisuals(currentUserPreference), animationDuration / 2);
+            setTimeout(() => themeIconContainer.classList.remove('icon-rotating'), animationDuration);
+          });
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (currentUserPreference === 'auto') applyActualTheme('auto');
+          });
+        } else {
+          console.error("Theme toggle button elements not found.");
+        }
 
- 		const getStoredUserPreference = () => localStorage.getItem('theme-preference');
- 		const setStoredUserPreference = (preference) => localStorage.setItem('theme-preference', preference);
- 		const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const originalHeaderTitle = document.getElementById('original-header-title');
+        const originalGetStartedButton = document.getElementById('original-get-started-button');
+        const topNavBar = document.getElementById('sticky-top-navigation-bar');
+        const stickyNavTitle = document.getElementById('sticky-nav-title');
+        const stickyNavGetStartedButton = document.getElementById('sticky-nav-get-started-button');
 
- 		const applyActualTheme = (preference) => {
- 			let themeToSet = (preference === 'auto') ? getSystemTheme() : preference;
- 			document.documentElement.setAttribute('data-theme', themeToSet);
- 		};
+        if (!originalHeaderTitle || !originalGetStartedButton ||
+          !topNavBar || !stickyNavTitle || !stickyNavGetStartedButton) {
+          console.warn("One or more sticky navigation elements (excluding logo) are missing. Sticky behavior for title/button might be affected.");
+        } else {
+          let _calculatedTopNavBarHeight = 0;
 
- 		function updateThemeButtonVisuals(currentPreferenceValue) {
- 			themeIconElement.innerHTML = themeIconMarkup[currentPreferenceValue]; // Inject HTML markup
- 			themeToggleButton.title = themeActionTitles[currentPreferenceValue];
- 		}
+          function measureAndCacheTopNavBarHeight() {
+            _calculatedTopNavBarHeight = topNavBar.offsetHeight;
+            if (_calculatedTopNavBarHeight <= 0) {
+              console.warn("Sticky top nav bar height calculated as 0 or less. Using fallback 60px.");
+              _calculatedTopNavBarHeight = 60;
+            }
+            return _calculatedTopNavBarHeight;
+          }
 
- 		let currentUserPreference = getStoredUserPreference() || 'auto';
- 		applyActualTheme(currentUserPreference);
- 		updateThemeButtonVisuals(currentUserPreference);
+          measureAndCacheTopNavBarHeight();
 
- 		themeToggleButton.addEventListener('click', () => {
- 			if (themeIconContainer.classList.contains('icon-rotating')) return;
- 			themeIconContainer.classList.add('icon-rotating');
+          function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+              const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+              };
+              clearTimeout(timeout);
+              timeout = setTimeout(later, wait);
+            };
+          }
 
- 			let currentPreferenceIndex = themeCycle.indexOf(currentUserPreference);
- 			let nextPreferenceIndex = (currentPreferenceIndex + 1) % themeCycle.length;
- 			currentUserPreference = themeCycle[nextPreferenceIndex];
+          function manageStickyElement(originalEl, stickyEl, isActiveFlagSetter) {
+            const elTop = originalEl.getBoundingClientRect().top;
+            const isOriginalFadedClass = 'original-content-faded';
+            const isStickyVisibleClass = 'visible';
 
- 			setStoredUserPreference(currentUserPreference);
- 			applyActualTheme(currentUserPreference);
+            if (elTop < _calculatedTopNavBarHeight) {
+              if (!stickyEl.classList.contains(isStickyVisibleClass)) stickyEl.classList.add(isStickyVisibleClass);
+              if (!originalEl.classList.contains(isOriginalFadedClass)) originalEl.classList.add(isOriginalFadedClass);
+              isActiveFlagSetter(true);
+            } else {
+              if (stickyEl.classList.contains(isStickyVisibleClass)) stickyEl.classList.remove(isStickyVisibleClass);
+              if (originalEl.classList.contains(isOriginalFadedClass)) originalEl.classList.remove(isOriginalFadedClass);
+              isActiveFlagSetter(false);
+            }
+          }
 
- 			setTimeout(() => {
- 				updateThemeButtonVisuals(currentUserPreference);
- 			}, animationDuration / 2);
+          function handleStickyNavScroll() {
+            if (_calculatedTopNavBarHeight <= 0) {
+              measureAndCacheTopNavBarHeight();
+              if (_calculatedTopNavBarHeight <= 0) return;
+            }
 
- 			setTimeout(() => {
- 				themeIconContainer.classList.remove('icon-rotating');
- 			}, animationDuration);
- 		});
+            let isTitleStickyActive = false;
+            let isButtonStickyActive = false;
 
- 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
- 			if (currentUserPreference === 'auto') {
- 				applyActualTheme('auto');
- 			}
- 		});
+            manageStickyElement(originalHeaderTitle, stickyNavTitle, (val) => isTitleStickyActive = val);
+            manageStickyElement(originalGetStartedButton, stickyNavGetStartedButton, (val) => isButtonStickyActive = val);
 
- 	} else {
- 		console.error("Theme toggle button elements not found.");
- 	}
- });
- const funFactElement = document.getElementById('fun-fact-text');
- if (funFactElement) {
- 	const funFacts = [
- 		"Did you know that Google Play Protect is useless?",
- 		"Did you know Aliucord with 150+ plugins somehow runs better than Discord's new app?",
- 		"Did you know Aliucord has over 200 available plugins?",
- 		"i am in your walls",
- 		"Did you know AliucordRN spawned Enmity and Vendetta?",
- 		"Having issues? Visit the #support channel in our Discord!",
- 		"The IWillCrashYourDiscord plugin crashes your discord.",
- 		"\"@Vendicated my bad.\"",
- 		"Aliucord can run on WearOS",
- 		"Aliucord uses the *real* old UI, from mid-2022!",
- 		"There was an attempt to make Aliucord run on iOS…",
- 		"veeeee 😭"
- 	];
- 	const funFactPrefix = "";
- 	let currentFactIndex = -1;
- 	const displayDuration = 7000;
- 	const transitionDuration = 400;
+            if (isTitleStickyActive || isButtonStickyActive) {
+              if (!topNavBar.classList.contains('active')) topNavBar.classList.add('active');
+            } else {
+              if (topNavBar.classList.contains('active')) topNavBar.classList.remove('active');
+            }
+          }
 
- 	function displayNextFunFact() {
- 		funFactElement.classList.add('changing');
+          window.addEventListener('scroll', debounce(handleStickyNavScroll, 10));
+          window.addEventListener('resize', debounce(() => {
+            measureAndCacheTopNavBarHeight();
+            handleStickyNavScroll();
+          }, 200));
+          handleStickyNavScroll();
+        }
 
- 		setTimeout(() => {
- 			currentFactIndex = (currentFactIndex + 1) % funFacts.length;
- 			const factText = funFacts[currentFactIndex];
- 			if (factText.toLowerCase().startsWith("did you know") ||
- 				factText.toLowerCase().startsWith("having issues") ||
- 				factText.toLowerCase().startsWith("aliucord uses") ||
- 				factText.toLowerCase().startsWith("there was an attempt") ||
- 				factText.toLowerCase().startsWith("aliucord can run")) {
- 				funFactElement.textContent = funFactPrefix + factText;
- 			} else {
- 				funFactElement.textContent = factText;
- 			}
- 			funFactElement.classList.remove('changing');
- 		}, transitionDuration);
+        const funFactElement = document.getElementById('fun-fact-text');
+        if (funFactElement) {
+          const funFacts = [
+            "Did you know that Google Play Protect is useless?", "Did you know Aliucord with 150+ plugins somehow runs better than Discord's new app?", "Did you know Aliucord has over 200 available plugins?", "i am in your walls", "Did you know AliucordRN spawned Enmity and Vendetta?", "Having issues? Visit the #support channel in our Discord!", "The IWillCrashYourDiscord plugin crashes your discord.", "\"@Vendicated my bad.\"", "Aliucord can run on WearOS", "Aliucord uses the *real* old UI, from mid-2022!", "There was an attempt to make Aliucord run on iOS…", "veeeee 😭"
+          ];
+          const funFactPrefix = "";
+          let currentFactIndex = -1;
+          const displayDuration = 7000;
+          const transitionDuration = 400;
 
- 		setTimeout(displayNextFunFact, displayDuration + transitionDuration); // Schedule next change
- 	}
-
- 	if (funFacts.length > 0) {
- 		displayNextFunFact();
- 	}
- } else {
- 	console.warn("Fun fact element not found.");
- }
-        
+          function displayNextFunFact() {
+            funFactElement.classList.add('changing');
+            setTimeout(() => {
+              currentFactIndex = (currentFactIndex + 1) % funFacts.length;
+              const factText = funFacts[currentFactIndex];
+              if (factText.toLowerCase().startsWith("did you know") || factText.toLowerCase().startsWith("having issues") || factText.toLowerCase().startsWith("aliucord uses") || factText.toLowerCase().startsWith("there was an attempt") || factText.toLowerCase().startsWith("aliucord can run")) {
+                funFactElement.textContent = funFactPrefix + factText;
+              } else {
+                funFactElement.textContent = factText;
+              }
+              funFactElement.classList.remove('changing');
+            }, transitionDuration);
+            setTimeout(displayNextFunFact, displayDuration + transitionDuration);
+          }
+          if (funFacts.length > 0) displayNextFunFact();
+        } else {
+          console.warn("Fun fact element not found.");
+        }
+      });
     </script>
 </body>
+
 </html>
