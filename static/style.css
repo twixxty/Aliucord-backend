@@ -267,7 +267,7 @@ color: var(--on-surface-variant);
 .content {
 max-width: 720px;
 margin: 0 auto 4rem auto;
-text-align: center;
+text-align: justify;
 }
 .content p {
 text-align: left;
