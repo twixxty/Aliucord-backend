@@ -398,7 +398,7 @@
       		const funFacts = [
       			"Did you know that Google Play Protect is useless?", "Did you know Aliucord with 150+ plugins somehow runs better than Discord's new app?", "Did you know Aliucord has over 200 available plugins?", "i am in your walls", "Did you know AliucordRN spawned Enmity and Vendetta?", "Having issues? Visit the #support channel in our Discord!", "The IWillCrashYourDiscord plugin crashes your discord.", "\"@Vendicated my bad.\"", "Aliucord can run on WearOS", "Aliucord uses the *real* old UI, from mid-2022!", "There was an attempt to make Aliucord run on iOS…", "veeeee 😭"
       		];
-      		const funFactPrefix = "";
+      		const funFactPrefix = "Fun Fact: ";
       		let currentFactIndex = -1;
       		const displayDuration = 7000;
       		const transitionDuration = 400;
@@ -411,7 +411,7 @@
       				if (factText.toLowerCase().startsWith("did you know") || factText.toLowerCase().startsWith("having issues") || factText.toLowerCase().startsWith("aliucord uses") || factText.toLowerCase().startsWith("there was an attempt") || factText.toLowerCase().startsWith("aliucord can run")) {
       					funFactElement.textContent = funFactPrefix + factText;
       				} else {
-      					funFactElement.textContent = factText;
+      					funFactElement.textContent = funFactPrefix + factText;
       				}
       				funFactElement.classList.remove('changing');
       			}, transitionDuration);
