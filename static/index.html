@@ -129,28 +129,8 @@
     </footer>
 
     <script>
-            document.addEventListener('DOMContentLoaded', function() {
-      	const stickyNavTitleElement = document.getElementById('sticky-nav-title');
-      	if (stickyNavTitleElement) {
-      		stickyNavTitleElement.addEventListener('click', function(event) {
-      			event.preventDefault();
-      			if (typeof Lenis !== 'undefined' && window.lenis instanceof Lenis) {
-      				window.lenis.scrollTo(0, {
-      					duration: 1.5,
-      					easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-      				});
-      			} else {
-      				window.scrollTo({
-      					top: 0,
-      					behavior: 'smooth'
-      				});
-      			}
-      		});
-      	} else {
-      		console.warn("Sticky navigation title element ('sticky-nav-title') not found for scroll-to-top functionality.");
-      	}
-
-      	const introOverlay = document.getElementById('intro-overlay');
+        document.addEventListener('DOMContentLoaded', function() {
+        const introOverlay = document.getElementById('intro-overlay');
       	const introLogoEl = document.getElementById('intro-logo');
       	if (introOverlay && introLogoEl) {
       		const fadeInScaleDuration = 0;
