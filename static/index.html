@@ -119,13 +119,6 @@
       <p>Revamped by <a href="https://twixxt.vercel.app" target="_blank">twixxty</a> on Discord</p>
       <p id="site-old">Classic Website made by <a href="https://mercenarylabs.net/breado" target="_blank">Breado#5112</a> on Discord</p>
       <span>Aliucord is not affiliated or endorsed by Discord. Discord is a trademark of Discord Inc.</span>
-      <section class="fun-fact-section fade-slide-in">
-        <div class="container">
-          <div id="fun-fact-container">
-            <p id="fun-fact-text"></p>
-          </div>
-        </div>
-      </section>
     </footer>
 
     <script>
@@ -359,35 +352,6 @@
       			handleStickyNavScroll();
       		}, 200));
       		handleStickyNavScroll();
-      	}
-
-      	const funFactElement = document.getElementById('fun-fact-text');
-      	if (funFactElement) {
-      		const funFacts = [
-      			"Did you know that Google Play Protect is useless?", "Did you know Aliucord with 150+ plugins somehow runs better than Discord's new app?", "Did you know Aliucord has over 200 available plugins?", "i am in your walls", "Did you know AliucordRN spawned Enmity and Vendetta?", "Having issues? Visit the #support channel in our Discord!", "The IWillCrashYourDiscord plugin crashes your discord.", "\"@Vendicated my bad.\"", "Aliucord can run on WearOS", "Aliucord uses the *real* old UI, from mid-2022!", "There was an attempt to make Aliucord run on iOS…", "veeeee 😭"
-      		];
-      		const funFactPrefix = "Fun Fact: ";
-      		let currentFactIndex = -1;
-      		const displayDuration = 7000;
-      		const transitionDuration = 400;
-
-      		function displayNextFunFact() {
-      			funFactElement.classList.add('changing');
-      			setTimeout(() => {
-      				currentFactIndex = (currentFactIndex + 1) % funFacts.length;
-      				const factText = funFacts[currentFactIndex];
-      				if (factText.toLowerCase().startsWith("did you know") || factText.toLowerCase().startsWith("having issues") || factText.toLowerCase().startsWith("aliucord uses") || factText.toLowerCase().startsWith("there was an attempt") || factText.toLowerCase().startsWith("aliucord can run")) {
-      					funFactElement.textContent = funFactPrefix + factText;
-      				} else {
-      					funFactElement.textContent = funFactPrefix + factText;
-      				}
-      				funFactElement.classList.remove('changing');
-      			}, transitionDuration);
-      			setTimeout(displayNextFunFact, displayDuration + transitionDuration);
-      		}
-      		if (funFacts.length > 0) displayNextFunFact();
-      	} else {
-      		console.warn("Fun fact element not found.");
       	}
       });
     </script>
